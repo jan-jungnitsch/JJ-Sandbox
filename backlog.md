@@ -4,10 +4,22 @@
 
 ## Epic 1: Zeiträume & Personenanzahl verwalten
 
-| ID   | User Story                                                                                                                                        | Priorität |
-|------|---------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
-| Z-1  | Als Nutzer möchte ich Zeiträume (z. B. Woche, Urlaub) anlegen und dabei eine Personenanzahl hinterlegen, damit alle nachgelagerten Funktionen diese Anzahl kennen. | Hoch      |
-| Z-2  | Als Nutzer möchte ich die Personenanzahl eines Zeitraums nachträglich ändern können.                                                               | Mittel    |
+| ID   | User Story                                                                                                                                                                                                   | Priorität |
+|------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| Z-1  | Als Nutzer möchte ich einen Zeitraum anlegen, indem ich einen **Reiseort**, ein **Startdatum (von)** und ein **Enddatum (bis)** sowie eine **Personenanzahl** eingebe, damit alle nachgelagerten Funktionen diese Daten kennen. | Hoch      |
+| Z-2  | Als Nutzer möchte ich einen bestehenden Zeitraum (Reiseort, Datum von/bis, Personenanzahl) nachträglich bearbeiten können.                                                                                    | Hoch      |
+| Z-3  | Als Nutzer möchte ich mehrere Zeiträume verwalten (anlegen, auflisten, löschen) können.                                                                                                                       | Mittel    |
+
+### Datenmodell Zeitraum
+
+```
+Zeitraum {
+  id:            UUID
+  reiseort:      String        // z. B. "Mallorca", "Schwarzwald"
+  datum_von:     Date          // Startdatum
+  datum_bis:     Date          // Enddatum
+  personen:      Integer (≥ 1) // Anzahl Reisende
+}
 
 ---
 
@@ -61,4 +73,5 @@ Speicheroptionen zur Entscheidung:
 |------------|--------------------------------------------------------------------------|
 | 2026-03-17 | Epic 3 angelegt (Einkaufsliste mit Persistenz E-1 bis E-7)               |
 | 2026-03-17 | Epic 2 P-1 ergänzt: Vorbelegung Personenanzahl aus Zeitraum; P-2 neu     |
+| 2026-03-17 | Epic 1 Z-1 erweitert: Reiseort + Datum von/bis als Pflichtfelder; Z-2/Z-3 neu; Datenmodell ergänzt |
 | 2026-03-17 | Epic 1 angelegt (Zeiträume & Personenanzahl)                             |
