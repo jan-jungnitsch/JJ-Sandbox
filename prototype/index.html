@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speiseplan & Einkaufsliste</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <span class="nav-brand">🍽 Reiseküche</span>
+    <div class="nav-tabs">
+      <button class="nav-tab active" data-view="zeitraeume">Zeiträume</button>
+      <button class="nav-tab" data-view="speiseplan">Speiseplan</button>
+      <button class="nav-tab" data-view="einkaufsliste">Einkaufsliste</button>
+    </div>
+  </nav>
+
+  <!-- ===== VIEW: ZEITRÄUME ===== -->
+  <main id="view-zeitraeume" class="view active">
+    <div class="page-header">
+      <h1>Zeiträume</h1>
+      <button class="btn btn-primary" id="btn-new-zeitraum">+ Neu</button>
+    </div>
+
+    <div id="zeitraum-list" class="card-grid"></div>
+
+    <!-- Modal: Zeitraum anlegen / bearbeiten -->
+    <div id="modal-zeitraum" class="modal hidden">
+      <div class="modal-box">
+        <h2 id="modal-zeitraum-title">Zeitraum anlegen</h2>
+        <label>Reiseort
+          <input type="text" id="zr-ort" placeholder="z. B. Mallorca" />
+        </label>
+        <div class="row-2">
+          <label>Von
+            <input type="date" id="zr-von" />
+          </label>
+          <label>Bis
+            <input type="date" id="zr-bis" />
+          </label>
+        </div>
+
+        <div class="section-title">Personen</div>
+        <div id="personen-list" class="personen-list"></div>
+        <div class="row-2">
+          <input type="text" id="person-vorname" placeholder="Vorname" />
+          <input type="text" id="person-nachname" placeholder="Nachname" />
+        </div>
+        <button class="btn btn-secondary btn-sm" id="btn-add-person">Person hinzufügen</button>
+
+        <div class="modal-actions">
+          <button class="btn btn-ghost" id="btn-cancel-zeitraum">Abbrechen</button>
+          <button class="btn btn-primary" id="btn-save-zeitraum">Speichern</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== VIEW: SPEISEPLAN ===== -->
+  <main id="view-speiseplan" class="view hidden">
+    <div class="page-header">
+      <h1>Speiseplan</h1>
+      <select id="speiseplan-zeitraum-select" class="select"></select>
+    </div>
+
+    <div id="speiseplan-content"></div>
+  </main>
+
+  <!-- Modal: Mahlzeit anlegen -->
+  <div id="modal-mahlzeit" class="modal hidden">
+    <div class="modal-box">
+      <h2>Mahlzeit hinzufügen</h2>
+      <label>Bezeichnung
+        <input type="text" id="mz-name" placeholder="z. B. Pasta Carbonara" />
+      </label>
+      <label>Mahlzeit-Typ
+        <select id="mz-typ" class="select">
+          <option value="Frühstück">Frühstück</option>
+          <option value="Mittagessen">Mittagessen</option>
+          <option value="Abendessen" selected>Abendessen</option>
+          <option value="Snack">Snack</option>
+        </select>
+      </label>
+      <label>Personen
+        <input type="number" id="mz-personen" min="1" />
+      </label>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="btn-cancel-mahlzeit">Abbrechen</button>
+        <button class="btn btn-primary" id="btn-save-mahlzeit">Speichern</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Koch-Zuweisung -->
+  <div id="modal-koch" class="modal hidden">
+    <div class="modal-box">
+      <h2>Koch zuweisen</h2>
+      <p id="koch-datum-label" class="subtext"></p>
+      <select id="koch-person-select" class="select"></select>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="btn-cancel-koch">Abbrechen</button>
+        <button class="btn btn-primary" id="btn-save-koch">Speichern</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== VIEW: EINKAUFSLISTE ===== -->
+  <main id="view-einkaufsliste" class="view hidden">
+    <div class="page-header">
+      <h1>Einkaufsliste</h1>
+      <div class="btn-group">
+        <button class="btn btn-secondary" id="btn-generate-list">Aus Speiseplan generieren</button>
+        <button class="btn btn-ghost btn-sm" id="btn-reset-list">Leeren</button>
+      </div>
+    </div>
+
+    <div class="add-item-row">
+      <input type="text" id="new-item-name" placeholder="Position hinzufügen…" class="grow" />
+      <input type="text" id="new-item-menge" placeholder="Menge" style="width:90px" />
+      <button class="btn btn-primary" id="btn-add-item">+</button>
+    </div>
+
+    <div id="einkaufsliste-content"></div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
